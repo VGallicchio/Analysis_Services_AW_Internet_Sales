@@ -13,8 +13,11 @@ Adventure Works Internet Sales tutorial (1500)
 •	How to deploy a tabular model by using Visual Studio.
 
 Scenario
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This  is based on Adventure Works Cycles, a fictitious company. Adventure Works is a large, multinational manufacturing company that produces and distributes bicycles, parts, and accessories for commercial markets in North America, Europe, and Asia. The company employs 500 workers. Additionally, Adventure Works employs several regional sales teams throughout its market base. Your project is to create a tabular model for sales and marketing users to analyze Internet sales data in the AdventureWorksDW database. The purpose is learning how to work with a basic tabular model by using many of the features included in Visual Studio with Analysis Services projects.
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 First, let's create a tubular model project in visual studio, remembering that for this example it needs to be in version 2019, for reasons of compatibility with SQL 2019.
