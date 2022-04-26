@@ -46,7 +46,7 @@ So we just pass our credentials and access the data.
 
 ![image](https://user-images.githubusercontent.com/81394440/163253418-6dc12743-9f8d-4de6-af86-285601b1ae14.png)
 
-ETL
+Get Data
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Now that we have access to the tables, we can, for example, select only the tables we want to work with and perform any necessary transformation that can later be loaded into our Analisys Services, so we have our complete ETL.
@@ -58,7 +58,74 @@ We can apply specific metrics and various other features such as calculated colu
 
 ![image](https://user-images.githubusercontent.com/81394440/163254571-797d45b0-41d1-4d2f-ac11-6b4104fbb917.png)
 
+Other features:
+We can perform many data transformations in our tabular project, such as creating calculated tables, managing or creating relationships between tables, and many things before we deploy the project to Analysis Services.
+
+In Diagram view for example we can see the relationship and edit then:
+![image](https://user-images.githubusercontent.com/81394440/165366656-9e4dd612-4866-4f8f-a15d-a50424a91b22.png)
+
+Creating a calculated colunm:
+![image](https://user-images.githubusercontent.com/81394440/165367140-39b075e6-2a77-4e7b-9958-84ff06721631.png)
+Using the column MonthNumberOfYear and EnglishMonthName we created the MonthCalendar Column for example.
+=RIGHT(" " & FORMAT([MonthNumberOfYear],"#0"), 2) & " - " & [EnglishMonthName]
+
+Partitions
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Partitions divide portions of data you need to process (refresh) frequently from data that can be processed less frequently. For example, a fact table may include certain row sets that contain data that rarely changes, but other row sets have data that changes often. There's no need to process all of the data when only a portion of it needs to be processed.
+
+Partitions work by dividing a table into logical partition objects. Individual partitions, each containing a unique segment of data, can then be incrementally processed either sequentially or in parallel independent of other partitions, or excluded from processing operations altogether.
+
+![image](https://user-images.githubusercontent.com/81394440/165368814-d738058c-2a11-42fd-9957-26d030da4511.png)
+
+In this project we will create partitions based on sales from the year 2001 to 2005:
+
+![image](https://user-images.githubusercontent.com/81394440/165369564-6667b770-12b5-4c76-9e78-7d70338ac15d.png)
+
+![image](https://user-images.githubusercontent.com/81394440/165369607-be9eb418-cfb2-4975-b2ff-4bed4961a43e.png)
 
 
+Deploy
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+In this project we are going to Deploy to Azure Analysis Services, for this you will need some admin permissions on the server.
+If you are going to replicate in the same way, don't forget to configure this step.
+
+Deploy the Model.
+
+In Solution Explorer, right-click the AW Internet Sales project, and then click Properties.
+
+![image](https://user-images.githubusercontent.com/81394440/165370352-76d33ec4-4e63-420e-b86b-6d1a98d31c55.png)
+
+In the AW Internet Sales Property Pages dialog box, under Deployment Server, in the Server property, enter the full server name.
+
+- If deploying to Azure Analysis Services, server name is a URL. In the portal, copy the Azure Analysis Services server name URL from the server's Overview page.
+- If deploying to a Power BI Premium workspace, server name is a Workspace Connection URL. In the Power BI service, copy from workspace Settings > Premium > Workspace Connection.
+
+![image](https://user-images.githubusercontent.com/81394440/165370938-0482d766-ac15-4f45-8490-e080be5fda7f.png)
+
+In the Database property, type Adventure Works Internet Sales.
+
+In the Model Name property, type Adventure Works Internet Sales Model.
+
+Verify your selections and then click OK.
+
+![image](https://user-images.githubusercontent.com/81394440/165371122-ef0bb5d4-b5f9-4a19-87f4-359bf1f5bc80.png)
+
+In Solution Explorer, right-click the AW Internet Sales project > Build.
+
+Right-click the AW Internet Sales project > Deploy.
+
+![image](https://user-images.githubusercontent.com/81394440/165371381-4ab59ad5-cf98-423b-b784-bfeaef633e7e.png)
+
+![image](https://user-images.githubusercontent.com/81394440/165371688-de2d9563-4e9c-4d60-921e-a6e7f7466fd9.png)
+
+We can now see in our azure environment in our Analysis Services if Deploy actually worked.
+
+![image](https://user-images.githubusercontent.com/81394440/165372353-7aa8e4e0-4b87-45ce-85bb-34efd7e1cfb8.png)
+
+As we can see the deployment worked, we can now create, for example, a connection with Power BI and create dashboards based on our Analysis Services data.
+
+Below is a small example of a dashboard created with the data from our connection to Analysys Services:
+![image](https://user-images.githubusercontent.com/81394440/165372871-d4457215-c0bc-4b68-9e2b-6db04893a18f.png)
 
 
